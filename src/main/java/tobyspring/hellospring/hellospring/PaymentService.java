@@ -16,7 +16,7 @@ public class PaymentService {
 
 
     public PaymentService(ExRateProvider exRateProvider) {
-        this.exRateProvider = exRateProvider
+        this.exRateProvider = exRateProvider;
     }
 
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws IOException {

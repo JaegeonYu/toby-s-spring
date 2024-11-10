@@ -9,12 +9,17 @@ import org.springframework.core.annotation.Order;
 public class ObjectFactory {
     @Bean
     PaymentService paymentService(){
-        return new PaymentService(exRateProvider());
+        return new PaymentService(cachedExRateProvider());
     }
 
     @Bean
     ExRateProvider exRateProvider(){
         return new WebApiExRateProvider();
+    }
+
+    @Bean
+    ExRateProvider cachedExRateProvider(){
+        return new CachedExRateProvider(exRateProvider());
     }
 
     @Bean

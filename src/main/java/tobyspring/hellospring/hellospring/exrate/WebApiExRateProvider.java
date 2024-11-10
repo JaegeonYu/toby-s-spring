@@ -1,8 +1,7 @@
-package tobyspring.hellospring.hellospring;
+package tobyspring.hellospring.hellospring.exrate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import tobyspring.hellospring.hellospring.payment.ExRateProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;

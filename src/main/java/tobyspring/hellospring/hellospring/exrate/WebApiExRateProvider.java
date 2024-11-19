@@ -2,10 +2,7 @@ package tobyspring.hellospring.hellospring.exrate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import tobyspring.hellospring.hellospring.api.ApiExecutor;
-import tobyspring.hellospring.hellospring.api.ExRateExtractor;
-import tobyspring.hellospring.hellospring.api.SimpleApiExecute;
-import tobyspring.hellospring.hellospring.api.SimpleExRateExtractor;
+import tobyspring.hellospring.hellospring.api.*;
 import tobyspring.hellospring.hellospring.payment.ExRateProvider;
 
 import java.io.BufferedReader;
@@ -18,35 +15,12 @@ import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
 public class WebApiExRateProvider implements ExRateProvider {
-
+    ApiTemplate apiTemplate = new ApiTemplate();
     @Override
     public BigDecimal getExRate(String currency) {
+
         String url = "https://open.er-api.com/v6/latest/" + currency;
-        return runApiForExRate(url, new SimpleApiExecute(), new SimpleExRateExtractor());
+        return apiTemplate.runApiForExRate(url, new SimpleApiExecute(), new SimpleExRateExtractor());
 
     }
-
-    private static BigDecimal runApiForExRate(String url, ApiExecutor apiExecutor, ExRateExtractor exRateExtractor) {
-        URI uri;
-        try {
-            uri = new URI(url);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-
-        String response;
-        try {
-            response = apiExecutor.execute(uri);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        try {
-            return exRateExtractor.extractExRate(response);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

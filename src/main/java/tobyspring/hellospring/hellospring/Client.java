@@ -17,13 +17,5 @@ public class Client {
         Payment payment = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
         System.out.println(payment);
 
-        System.out.println("============");
-        Payment payment1 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
-        System.out.println(payment1);
-
-        TimeUnit.SECONDS.sleep(3);
-        System.out.println("============");
-        Payment payment2 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
-        System.out.println(payment2);
     }
 }

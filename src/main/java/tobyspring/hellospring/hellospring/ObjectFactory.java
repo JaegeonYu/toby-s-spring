@@ -38,10 +38,6 @@ public class ObjectFactory {
         return new CachedExRateProvider(exRateProvider());
     }
 
-    @Bean
-    OrderService orderService(){
-        return new OrderService(exRateProvider());
-    }
 
     @Bean
     Clock clock(){
@@ -49,10 +45,4 @@ public class ObjectFactory {
     }
 }
 
-class OrderService{
-    ExRateProvider exRateProvider;
 
-    public OrderService(ExRateProvider exRateProvider) {
-        this.exRateProvider = exRateProvider;
-    }
-}
